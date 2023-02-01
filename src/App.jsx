@@ -8,13 +8,13 @@ import { AdditionalForm } from "./components/AdditionalForm";
 import "../src/styles/App.css";
 
 const INITIAL_DATA = {
-  phone: "",
-  propertyType: "",
+  dataPhone: "",
+  serviceHomeType: "",
   voivodeship: "",
-  email: "",
-  area: "",
+  dataEmail: "",
+  serviceDataFlatArea: "",
   date: "",
-  city: "",
+  serviceDataAddress: "",
   street: "",
   tips: "",
   extraInfo: "",
@@ -43,7 +43,7 @@ export const App = () => {
     e.preventDefault();
     if (!isLastStep) return next();
 
-    fetch("", {
+    fetch("https://system.pewnylokal.pl/crm/api/newEndpoint.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,11 +52,11 @@ export const App = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        console.log("Success: ", data);
       })
       .catch((error) => {
         // TODO REMOVE
-        console.log("Error but: ", data);
+        console.log("Error, but: ", data);
 
         //
         console.error("Error:", error);

@@ -1,26 +1,26 @@
 import { FormWrapper } from "./FormWrapper";
 
-export function ContactForm({ email, area, voivodeship, updateFields }) {
+export function ContactForm({ dataEmail, serviceDataFlatArea, voivodeship, updateFields }) {
   return (
     <FormWrapper title="Dodatkowe informacje">
-      <label htmlFor="email">E-mail</label>
+      <label htmlFor="dataEmail">E-mail</label>
       <input
         autoFocus 
-        id="email"
-        type="email"
-        name="email"
-        value={email}
-        onChange={(e) => updateFields({ email: e.target.value })}
+        id="dataEmail"
+        type="dataEmail"
+        name="dataEmail"
+        value={dataEmail}
+        onChange={(e) => updateFields({ dataEmail: e.target.value })}
       />
-      <label htmlFor="area">Metaż</label>
+      <label htmlFor="serviceDataFlatArea">Metaż</label>
       <input 
         type="number"
-        name="area"
+        name="serviceDataFlatArea"
         id="are"
         min={1}
         max={2000}
-        value={area}
-        onChange={(e) => updateFields({ area: e.target.value })}
+        value={serviceDataFlatArea}
+        onChange={(e) => updateFields({ serviceDataFlatArea: e.target.value })}
       />
       <label htmlFor="voivodeship">Województwo</label>
       <select
