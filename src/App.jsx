@@ -10,12 +10,12 @@ import "../src/styles/App.css";
 const INITIAL_DATA = {
   dataPhone: "",
   serviceHomeType: "",
-  voivodeship: "",
+  serviceDataCity: "",
   dataEmail: "",
   serviceDataFlatArea: "",
   date: "",
+  serviceDataAddressCity: "",
   serviceDataAddress: "",
-  street: "",
   tips: "",
   extraInfo: "",
   docs: "",
@@ -30,11 +30,11 @@ export const App = () => {
     });
   }
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+  const { steps, currentStepIndex, step, isLastStep, back, next } =
     useMultistepForm([
       <UserForm {...data} updateFields={updateFields} />,
       <ContactForm {...data} updateFields={updateFields} />,
-      <DateForm {...data} updateFields={updateFields}  />,
+      <DateForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
       <AdditionalForm {...data} updateFields={updateFields} />,
     ]);
@@ -55,11 +55,7 @@ export const App = () => {
         console.log("Success: ", data);
       })
       .catch((error) => {
-        // TODO REMOVE
-        console.log("Error, but: ", data);
-
-        //
-        console.error("Error:", error);
+        console.error("Error: ", error);
       });
   }
 
@@ -69,15 +65,12 @@ export const App = () => {
         <img src="/img/logo.svg" alt="log" height={40} />
         {currentStepIndex + 1} / {steps.length}
       </div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} >
         {step}
         <div className="form-foot">
-          <button className="btn-main" type="submit">{isLastStep ? "Wyślij" : "Dalej"}</button>
-          {!isFirstStep && (
-            <button className="btn-second" type="button" onClick={back}>
-              Cofnij
-            </button>
-          )}
+          <button className="btn-main" type="submit">
+            {isLastStep ? "Wyślij" : "Dalej"}
+          </button>
         </div>
       </form>
     </div>

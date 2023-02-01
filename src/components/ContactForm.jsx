@@ -1,13 +1,13 @@
 import { FormWrapper } from "./FormWrapper";
 
-export function ContactForm({ dataEmail, serviceDataFlatArea, voivodeship, updateFields }) {
+export function ContactForm({ dataEmail, serviceDataFlatArea, serviceDataCity, updateFields }) {
   return (
     <FormWrapper title="Dodatkowe informacje">
       <label htmlFor="dataEmail">E-mail</label>
       <input
         autoFocus 
         id="dataEmail"
-        type="dataEmail"
+        type="email"
         name="dataEmail"
         value={dataEmail}
         onChange={(e) => updateFields({ dataEmail: e.target.value })}
@@ -16,18 +16,18 @@ export function ContactForm({ dataEmail, serviceDataFlatArea, voivodeship, updat
       <input 
         type="number"
         name="serviceDataFlatArea"
-        id="are"
+        id="serviceDataFlatArea"
         min={1}
         max={2000}
         value={serviceDataFlatArea}
         onChange={(e) => updateFields({ serviceDataFlatArea: e.target.value })}
       />
-      <label htmlFor="voivodeship">Województwo</label>
+      <label htmlFor="serviceDataCity">Województwo</label>
       <select
-        id="voivodeship"
-        name="voivodeship"
-        value={voivodeship}
-        onChange={(e) => updateFields({ voivodeship: e.target.value })}
+        id="serviceDataCity"
+        name="serviceDataCity"
+        value={serviceDataCity}
+        onChange={(e) => updateFields({ serviceDataCity: e.target.value })}
       >
         <option value="wybierz">wybierz</option>
         <option value="3">Dolnośląskie</option>
