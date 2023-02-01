@@ -7,11 +7,11 @@ export function AdditionalForm({ extraInfo, updateFields }) {
       <textarea
         type="text"
         name="extraInfo"
+        id="extraInfo"
         autoFocus
         required
         value={extraInfo}
-        onChange={(e) => updateFields({ extraInfo: e.target.value })}
-        cols="30"
+        onChange={(e) => updateFields({ extraInfo: e.target.value })} 
         rows="10"
       ></textarea>
     </FormWrapper>

@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { FormWrapper } from "./FormWrapper";
-import DateTimePicker from "react-datetime-picker";
+import { FormWrapper } from "./FormWrapper"; 
 
-export function DateForm({ date, updateFields }) {
-  const [value, setDate] = useState(new Date());
-  date = value.toLocaleDateString();
+export function DateForm({ date, updateFields }) { 
 
   return (
     <FormWrapper title="Data">
-      <label htmlFor="">Wybierz datę:</label>
-      {/* <DateTimePicker
-        value={value}
-        minDate={new Date()}
-        format="y-MM-dd"
-        onChange={setDate}
-      /> */}
+      <label htmlFor="date-time">Wybierz datę:</label> 
     </FormWrapper>
   );
 }

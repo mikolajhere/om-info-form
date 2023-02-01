@@ -110,26 +110,39 @@ input {
   min-height: 35px;
   padding: 4px 15px;
   border: solid 1px #ddd;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   font-size: large;
   margin-bottom: 1rem;
   transition: 0.2s;
 }
 select {
   min-height: 35px;
-  padding: 10px 10px;
+  padding: 10px 15px;
   border: solid 1px #ddd;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   font-size: large;
   margin-bottom: 1rem;
   transition: 0.2s;
+  font-family: inherit;
+  line-height: inherit;
+
+  vertical-align: middle;
+  background: #fff
+    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+    no-repeat right 0.75rem center;
+  background-size: 8px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 textarea {
   min-height: 35px;
   padding: 10px 15px;
   border: solid 1px #ddd;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   font-size: large;
   margin-bottom: 1rem;
   transition: 0.2s;
@@ -143,7 +156,8 @@ select:active {
 
 .btn-main {
   width: 100%;
-  border-radius: 3px;
+  min-height: 45px;
+  border-radius: 0.25rem;
   border: solid 1px #267ec1;
   background-color: #267ec1;
   color: white;
@@ -174,4 +188,7 @@ label {
   width: fit-content;
   margin: 5px auto 0;
   color: #4d4d4d;
+}
+
+#voivodeship {
 }

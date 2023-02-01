@@ -34,7 +34,7 @@ export const App = () => {
     useMultistepForm([
       <UserForm {...data} updateFields={updateFields} />,
       <ContactForm {...data} updateFields={updateFields} />,
-      <DateForm {...data} updateFields={updateFields} />,
+      <DateForm {...data} updateFields={updateFields}  />,
       <AddressForm {...data} updateFields={updateFields} />,
       <AdditionalForm {...data} updateFields={updateFields} />,
     ]);
@@ -43,7 +43,7 @@ export const App = () => {
     e.preventDefault();
     if (!isLastStep) return next();
 
-    fetch("https://example.com/profile", {
+    fetch("", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
