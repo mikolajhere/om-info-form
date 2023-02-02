@@ -190,5 +190,14 @@ label {
   color: #4d4d4d;
 }
 
-#serviceDataCity {
+.react-datepicker-wrapper input {
+  min-height: 45px;
+  max-height: 45px;
+  padding: 0 15px;
+  border: solid 1px #ddd;
+  border-radius: 0.25rem;
+  font-size: large; 
+  transition: 0.2s; 
+  margin-bottom: 0;
+  cursor: pointer;
 }

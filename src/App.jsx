@@ -5,19 +5,31 @@ import { UserForm } from "./components/UserForm";
 import { DateForm } from "./components/DateForm";
 import { AddressForm } from "./components/AddressForm";
 import { AdditionalForm } from "./components/AdditionalForm";
-import "../src/styles/App.css";
 import { ThankYouForm } from "./components/ThankYouForm";
+import "../src/styles/App.css";
 
 const INITIAL_DATA = {
+  dataSMSTemplate: "odbiorymieszkan.info.php",
+  dataEmailTemplate: "odbiorymieszkan.info.php",
+  submit: 1,
   dataUpdateEmail: "",
   dataLog: "",
   dataPhone: "",
-  "dataValues[serviceDataAddressCityText]": "",
-  "dataValues[serviceDataAddress]": "",
-  "dataValues[serviceDataCity]": "",
-  "dataValues[serviceDataArea]": "",
-  "dataValues[serviceHomeType]": "",
-  date: "",
+  dataTag: {
+    3: 1,
+    4: 1,
+  },
+  dataValues: {
+    serviceDataType: 394,
+    serviceClientSource: 19,
+    serviceClientChannel: 39,
+    serviceDataAddressCityText: "",
+    serviceDataAddress: "",
+    serviceDataCity: "",
+    serviceDataArea: "",
+    serviceHomeType: "",
+    serviceDataServiceDate: "",
+  },
   docs: "",
   tips: "",
 };
@@ -45,64 +57,47 @@ export const App = () => {
     console.log(data);
 
     if (currentStepIndex === 0) {
-      // fetch(
-      //   "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(data),
-      //   }
-      // )
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     setData({ clientHash: data.hash });
-      //     console.log("Success: ", data);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error: ", error);
-      //   });
+      fetch(
+        "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setData({ clientHash: data.hash, submit: 1 });
+          console.log("Endpoint Success: ", data);
+        })
+        .catch((error) => {
+          console.error("Endpoint Error: ", error);
+        });
+
+      setData({ "dataValues[serviceDataServiceDate]": data.hash });
       next();
     } else {
       if (!isLastStep) {
-        // fetch(
-        //   "https://system.pewnylokal.pl/crm/api/updateClientData.php?format=json",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(data),
-        //   }
-        // )
-        //   .then((response) => response.json())
-        //   .then((data) => { 
-        //     console.log("Success: ", data);
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error: ", error);
-        //   });
+        fetch(
+          "https://system.pewnylokal.pl/crm/api/updateClientData.php?format=json",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("UpdateClientData Success: ", data);
+          })
+          .catch((error) => {
+            console.error("UpdateClientData Error: ", error);
+          });
         next();
-      } else if (isLastStep) {
-        // fetch(
-        //   "https://system.pewnylokal.pl/crm/api/updateClientData.php?format=json",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(data),
-        //   }
-        // )
-        //   .then((response) => response.json())
-        //   .then((data) => {
-        //     console.log("Success hash: ", data.clientHash);
-        //     console.log("Success: ", data);
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error: ", error);
-        //   });
       }
     }
   }

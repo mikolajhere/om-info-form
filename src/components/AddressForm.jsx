@@ -8,27 +8,34 @@ export function AddressForm({
 }) {
   return (
     <FormWrapper title="Dodatkowe informacje">
-      <label htmlFor="">Miasto</label>
+      <label htmlFor="serviceDataAddressCityText">Miasto</label>
       <input
         autoFocus
         type="text"
-        name="dataValues[serviceDataAddressCityText]"
+        name="serviceDataAddressCityText"
+        id="serviceDataAddressCityText"
         value={serviceDataAddressCityText}
         onChange={(e) =>
-          updateFields({ "dataValues[serviceDataAddressCityText]": e.target.value })
+          updateFields({
+            dataValues: { serviceDataAddressCityText: e.target.value },
+          })
         }
       />
-      <label htmlFor="">Ulica i numer</label>
+      <label htmlFor="serviceDataAddress">Ulica i numer</label>
       <input
         type="text"
-        name="dataValues[serviceDataAddress]"
+        name="serviceDataAddress"
+        id="serviceDataAddress"
         value={serviceDataAddress}
-        onChange={(e) => updateFields({ "dataValues[serviceDataAddress]": e.target.value })}
+        onChange={(e) =>
+          updateFields({ dataValues: { serviceDataAddress: e.target.value } })
+        }
       />
-      <label htmlFor="">Wskazówki dojazdu</label>
+      <label htmlFor="tips">Wskazówki dojazdu</label>
       <input
         type="text"
         name="tips"
+        id="tips"
         value={tips}
         onChange={(e) => updateFields({ tips: e.target.value })}
       />

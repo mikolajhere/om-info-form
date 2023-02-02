@@ -19,10 +19,10 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
       <label htmlFor="serviceHomeType">Nieruchomość</label>  
       <select
         id="serviceHomeType"
-        name="dataValues[serviceHomeType]"
+        name="serviceHomeType"
         value={serviceHomeType}
         onChange={(e) =>
-          updateFields({ "dataValues[serviceHomeType]": e.target.value })
+          updateFields({ serviceHomeType: e.target.value })
         }
       >
         <option value="wybierz">wybierz</option>

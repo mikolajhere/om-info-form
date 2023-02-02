@@ -15,27 +15,35 @@ export function ContactForm({
         type="email"
         name="dataUpdateEmail"
         value={dataUpdateEmail}
-        onChange={(e) => updateFields({ dataUpdateEmail: e.target.value })}
+        onChange={(e) =>
+          updateFields({
+            dataUpdateEmail: e.target.value,
+          })
+        }
       />
       <label htmlFor="serviceDataArea">Metaż nieruchomości</label>
       <input
         type="number"
-        name="dataValues[serviceDataArea]"
+        name="serviceDataArea"
         id="serviceDataArea"
         min={1}
         max={2000}
         value={serviceDataArea}
         onChange={(e) =>
-          updateFields({ "dataValues[serviceDataArea]": e.target.value })
+          updateFields({
+            dataValues: { serviceDataArea: e.target.value },
+          })
         }
       />
       <label htmlFor="serviceDataCity">Województwo</label>
       <select
         id="serviceDataCity"
-        name="dataValues[serviceDataCity]"
+        name="serviceDataCity"
         value={serviceDataCity}
         onChange={(e) =>
-          updateFields({ "dataValues[serviceDataCity]": e.target.value })
+          updateFields({
+            dataValues: { serviceDataCity: e.target.value },
+          })
         }
       >
         <option value="wybierz">wybierz</option>
