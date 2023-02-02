@@ -10,18 +10,26 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
         name="dataPhone"
         type="tel"
         id="dataPhone"
+        minLength={9}
+        maxLength={14}
         value={dataPhone}
         onChange={(e) => updateFields({ dataPhone: e.target.value })}
       />
 
-      <label htmlFor="serviceHomeType">Typ nieruchomości</label>
-      <input
-        type="text"
-        name="serviceHomeType"
+      <label htmlFor="serviceHomeType">Nieruchomość</label>  
+      <select
         id="serviceHomeType"
+        name="dataValues[serviceHomeType]"
         value={serviceHomeType}
-        onChange={(e) => updateFields({ serviceHomeType: e.target.value })}
-      />
+        onChange={(e) =>
+          updateFields({ "dataValues[serviceHomeType]": e.target.value })
+        }
+      >
+        <option value="wybierz">wybierz</option>
+        <option value="390">Mieszkanie</option>
+        <option value="391">Dom</option>
+        <option value="391">Inne</option>
+      </select>
     </FormWrapper>
   );
 }

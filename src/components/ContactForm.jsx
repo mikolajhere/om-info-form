@@ -1,33 +1,42 @@
 import { FormWrapper } from "./FormWrapper";
 
-export function ContactForm({ dataEmail, serviceDataFlatArea, serviceDataCity, updateFields }) {
+export function ContactForm({
+  dataUpdateEmail,
+  serviceDataArea,
+  serviceDataCity,
+  updateFields,
+}) {
   return (
-    <FormWrapper title="Dodatkowe informacje">
-      <label htmlFor="dataEmail">E-mail</label>
+    <FormWrapper title="Dodatkowe dane">
+      <label htmlFor="dataUpdateEmail">E-mail</label>
       <input
-        autoFocus 
-        id="dataEmail"
+        autoFocus
+        id="dataUpdateEmail"
         type="email"
-        name="dataEmail"
-        value={dataEmail}
-        onChange={(e) => updateFields({ dataEmail: e.target.value })}
+        name="dataUpdateEmail"
+        value={dataUpdateEmail}
+        onChange={(e) => updateFields({ dataUpdateEmail: e.target.value })}
       />
-      <label htmlFor="serviceDataFlatArea">Metaż</label>
-      <input 
+      <label htmlFor="serviceDataArea">Metaż nieruchomości</label>
+      <input
         type="number"
-        name="serviceDataFlatArea"
-        id="serviceDataFlatArea"
+        name="dataValues[serviceDataArea]"
+        id="serviceDataArea"
         min={1}
         max={2000}
-        value={serviceDataFlatArea}
-        onChange={(e) => updateFields({ serviceDataFlatArea: e.target.value })}
+        value={serviceDataArea}
+        onChange={(e) =>
+          updateFields({ "dataValues[serviceDataArea]": e.target.value })
+        }
       />
       <label htmlFor="serviceDataCity">Województwo</label>
       <select
         id="serviceDataCity"
-        name="serviceDataCity"
+        name="dataValues[serviceDataCity]"
         value={serviceDataCity}
-        onChange={(e) => updateFields({ serviceDataCity: e.target.value })}
+        onChange={(e) =>
+          updateFields({ "dataValues[serviceDataCity]": e.target.value })
+        }
       >
         <option value="wybierz">wybierz</option>
         <option value="3">Dolnośląskie</option>

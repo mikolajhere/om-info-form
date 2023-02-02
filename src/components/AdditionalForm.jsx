@@ -1,17 +1,16 @@
 import { FormWrapper } from "./FormWrapper";
 
-export function AdditionalForm({ extraInfo, updateFields }) {
+export function AdditionalForm({ dataLog, updateFields }) {
   return (
     <FormWrapper title="Dodatkowe informacje">
-      <label htmlFor="extraInfo">Dodatkowe informacje</label> 
+      <label htmlFor="dataLog">Dodatkowe informacje</label> 
       <textarea
         type="text"
-        name="extraInfo"
-        id="extraInfo"
-        autoFocus
-        required
-        value={extraInfo}
-        onChange={(e) => updateFields({ extraInfo: e.target.value })} 
+        name="dataLog"
+        id="dataLog"
+        autoFocus 
+        value={dataLog}
+        onChange={(e) => updateFields({ dataLog: e.target.value })} 
         rows="10"
       ></textarea>
     </FormWrapper>

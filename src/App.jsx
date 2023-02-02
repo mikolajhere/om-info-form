@@ -6,19 +6,20 @@ import { DateForm } from "./components/DateForm";
 import { AddressForm } from "./components/AddressForm";
 import { AdditionalForm } from "./components/AdditionalForm";
 import "../src/styles/App.css";
+import { ThankYouForm } from "./components/ThankYouForm";
 
 const INITIAL_DATA = {
+  dataUpdateEmail: "",
+  dataLog: "",
   dataPhone: "",
-  serviceHomeType: "",
-  serviceDataCity: "",
-  dataEmail: "",
-  serviceDataFlatArea: "",
+  "dataValues[serviceDataAddressCityText]": "",
+  "dataValues[serviceDataAddress]": "",
+  "dataValues[serviceDataCity]": "",
+  "dataValues[serviceDataArea]": "",
+  "dataValues[serviceHomeType]": "",
   date: "",
-  serviceDataAddressCity: "",
-  serviceDataAddress: "",
-  tips: "",
-  extraInfo: "",
   docs: "",
+  tips: "",
 };
 
 export const App = () => {
@@ -30,48 +31,101 @@ export const App = () => {
     });
   }
 
-  const { steps, currentStepIndex, step, isLastStep, back, next } =
-    useMultistepForm([
-      <UserForm {...data} updateFields={updateFields} />,
-      <ContactForm {...data} updateFields={updateFields} />,
-      <DateForm {...data} updateFields={updateFields} />,
-      <AddressForm {...data} updateFields={updateFields} />,
-      <AdditionalForm {...data} updateFields={updateFields} />,
-    ]);
+  const { steps, currentStepIndex, step, isLastStep, next } = useMultistepForm([
+    <UserForm {...data} updateFields={updateFields} />,
+    <ContactForm {...data} updateFields={updateFields} />,
+    <DateForm {...data} updateFields={updateFields} />,
+    <AddressForm {...data} updateFields={updateFields} />,
+    <AdditionalForm {...data} updateFields={updateFields} />,
+    <ThankYouForm {...data} updateFields={updateFields} />,
+  ]);
 
   function onSubmit(e) {
     e.preventDefault();
-    if (!isLastStep) return next();
+    console.log(data);
 
-    fetch("https://system.pewnylokal.pl/crm/api/newEndpoint.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success: ", data);
-      })
-      .catch((error) => {
-        console.error("Error: ", error);
-      });
+    if (currentStepIndex === 0) {
+      // fetch(
+      //   "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(data),
+      //   }
+      // )
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     setData({ clientHash: data.hash });
+      //     console.log("Success: ", data);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error: ", error);
+      //   });
+      next();
+    } else {
+      if (!isLastStep) {
+        // fetch(
+        //   "https://system.pewnylokal.pl/crm/api/updateClientData.php?format=json",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        //   }
+        // )
+        //   .then((response) => response.json())
+        //   .then((data) => { 
+        //     console.log("Success: ", data);
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error: ", error);
+        //   });
+        next();
+      } else if (isLastStep) {
+        // fetch(
+        //   "https://system.pewnylokal.pl/crm/api/updateClientData.php?format=json",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        //   }
+        // )
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     console.log("Success hash: ", data.clientHash);
+        //     console.log("Success: ", data);
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error: ", error);
+        //   });
+      }
+    }
   }
 
   return (
     <div className="form-container">
       <div className="num-of-page">
         <img src="/img/logo.svg" alt="log" height={40} />
-        {currentStepIndex + 1} / {steps.length}
       </div>
-      <form onSubmit={onSubmit} >
+      <form onSubmit={onSubmit}>
         {step}
-        <div className="form-foot">
-          <button className="btn-main" type="submit">
-            {isLastStep ? "Wyślij" : "Dalej"}
-          </button>
-        </div>
+        {isLastStep ? (
+          <></>
+        ) : (
+          <>
+            {" "}
+            <div className="form-foot">
+              <button className="btn-main" type="submit">
+                {isLastStep ? "Koniec" : "Dalej"}
+              </button>
+            </div>
+          </>
+        )}
       </form>
     </div>
   );
