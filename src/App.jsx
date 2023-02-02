@@ -43,7 +43,7 @@ export const App = () => {
     });
   }
 
-  const { steps, currentStepIndex, step, isLastStep, next } = useMultistepForm([
+  const { steps, currentStepIndex, isFirstStep, step, isLastStep, next } = useMultistepForm([
     <UserForm {...data} updateFields={updateFields} />,
     <ContactForm {...data} updateFields={updateFields} />,
     <DateForm {...data} updateFields={updateFields} />,
@@ -52,11 +52,16 @@ export const App = () => {
     <ThankYouForm {...data} updateFields={updateFields} />,
   ]);
 
+  // TODO 
+  // 1. naprawic wskazowki dojazdu  
+  // 2. naprawic tagi
+  // 3. naprawic wpisanie pola miasto z formularza do pola miejscowosc w CRM
+
   function onSubmit(e) {
     e.preventDefault();
     console.log(data);
 
-    if (currentStepIndex === 0) {
+    if (isFirstStep) {
       fetch(
         "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
         {
