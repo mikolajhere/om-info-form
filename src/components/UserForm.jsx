@@ -16,14 +16,12 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
         onChange={(e) => updateFields({ dataPhone: e.target.value })}
       />
 
-      <label htmlFor="serviceHomeType">Nieruchomość</label>  
+      <label htmlFor="serviceHomeType">Nieruchomość</label>
       <select
         id="serviceHomeType"
         name="serviceHomeType"
         value={serviceHomeType}
-        onChange={(e) =>
-          updateFields({ serviceHomeType: e.target.value })
-        }
+        onChange={(e) => updateFields({ "dataValues[serviceHomeType]": e.target.value })}
       >
         <option value="wybierz">wybierz</option>
         <option value="390">Mieszkanie</option>

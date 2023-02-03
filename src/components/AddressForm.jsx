@@ -1,35 +1,44 @@
+import { useState } from "react";
 import { FormWrapper } from "./FormWrapper";
 
 export function AddressForm({
-  serviceDataAddressCityText,
+  serviceDataAddressCityTextText,
   serviceDataAddress,
   tips,
+  street,
   updateFields,
 }) {
+  const handleChange = (e) => {
+    updateFields({
+      "dataValues[serviceDataAddress]": `${street} (${tips})`,
+    });
+  };
+
   return (
     <FormWrapper title="Dodatkowe informacje">
-      <label htmlFor="serviceDataAddressCityText">Miasto</label>
+      <label htmlFor="serviceDataAddressCityTextText">Miasto</label>
       <input
         autoFocus
         type="text"
-        name="serviceDataAddressCityText"
-        id="serviceDataAddressCityText"
-        value={serviceDataAddressCityText}
+        name="serviceDataAddressCityTextText"
+        id="serviceDataAddressCityTextText"
+        value={serviceDataAddressCityTextText}
         onChange={(e) =>
           updateFields({
-            dataValues: { serviceDataAddressCityText: e.target.value },
+            "dataValues[serviceDataAddressCityText]": e.target.value,
           })
         }
       />
-      <label htmlFor="serviceDataAddress">Ulica i numer</label>
+      <label htmlFor="street">Ulica i numer</label>
       <input
         type="text"
-        name="serviceDataAddress"
-        id="serviceDataAddress"
-        value={serviceDataAddress}
-        onChange={(e) =>
-          updateFields({ dataValues: { serviceDataAddress: e.target.value } })
-        }
+        name="street"
+        id="street"
+        value={street}
+        onChange={(e) => {
+          updateFields({ street: e.target.value });
+          handleChange();
+        }}
       />
       <label htmlFor="tips">Wskazówki dojazdu</label>
       <input
@@ -37,7 +46,10 @@ export function AddressForm({
         name="tips"
         id="tips"
         value={tips}
-        onChange={(e) => updateFields({ tips: e.target.value })}
+        onChange={(e) => {
+          updateFields({ tips: e.target.value });
+          handleChange();
+        }}
       />
     </FormWrapper>
   );

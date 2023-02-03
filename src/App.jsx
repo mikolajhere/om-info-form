@@ -10,28 +10,27 @@ import "../src/styles/App.css";
 
 const INITIAL_DATA = {
   dataSMSTemplate: "odbiorymieszkan.info.php",
-  dataEmailTemplate: "odbiorymieszkan.info.php",
-  submit: 1,
-  dataUpdateEmail: "",
   dataLog: "",
   dataPhone: "",
-  dataTag: {
-    3: 1,
-    4: 1,
+  dataEmailTemplate: "odbiorymieszkan.info.php",
+  dataTags: {
+    3: "1",
+    4: "1",
   },
-  dataValues: {
-    serviceDataType: 394,
-    serviceClientSource: 19,
-    serviceClientChannel: 39,
-    serviceDataAddressCityText: "",
-    serviceDataAddress: "",
-    serviceDataCity: "",
-    serviceDataArea: "",
-    serviceHomeType: "",
-    serviceDataServiceDate: "",
-  },
+  "dataValues[serviceDataType]": 394,
+  "dataValues[serviceClientSource]": 19,
+  "dataValues[serviceClientChannel]": 39,
+  "dataValues[serviceDataAddressCityText]": "",
+  "dataValues[serviceDataAddress]": "",
+  "dataValues[serviceDataCity]": "",
+  "dataValues[serviceDataArea]": "",
+  "dataValues[serviceHomeType]": "",
+  "dataValues[serviceDataServiceDate]": "",
+  dataUpdateEmail: "",
   docs: "",
+  submit: 1,
   tips: "",
+  street: "",
 };
 
 export const App = () => {
@@ -43,21 +42,28 @@ export const App = () => {
     });
   }
 
-  const { steps, currentStepIndex, isFirstStep, step, isLastStep, next } = useMultistepForm([
+  function handleTitleChange(e) {
+    setData({
+      ...data,
+      artwork: {
+        ...person.artwork,
+        title: e.target.value,
+      },
+    });
+  }
+
+  const { isFirstStep, step, isLastStep, next } = useMultistepForm([
     <UserForm {...data} updateFields={updateFields} />,
     <ContactForm {...data} updateFields={updateFields} />,
-    <DateForm {...data} updateFields={updateFields} />,
     <AddressForm {...data} updateFields={updateFields} />,
+    <DateForm {...data} updateFields={updateFields} />,
     <AdditionalForm {...data} updateFields={updateFields} />,
     <ThankYouForm {...data} updateFields={updateFields} />,
   ]);
 
-  // TODO 
-  // 1. naprawic wskazowki dojazdu 
-  // 2. naprawic tagi
-  // 3. naprawic wysylke maili 4x pod rzad
-  
-  // 4. naprawic wpisanie pola miasto z formularza do pola miejscowosc w CRM
+  // TODO
+  // 1. naprawic wysylke maili 4x pod rzad
+  // 2. naprawic nadpisywanie dataValues
 
   function onSubmit(e) {
     e.preventDefault();
@@ -123,7 +129,7 @@ export const App = () => {
             {" "}
             <div className="form-foot">
               <button className="btn-main" type="submit">
-                {isLastStep ? "Koniec" : "Dalej"}
+                Dalej
               </button>
             </div>
           </>

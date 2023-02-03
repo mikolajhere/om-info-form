@@ -31,7 +31,7 @@ export function ContactForm({
         value={serviceDataArea}
         onChange={(e) =>
           updateFields({
-            dataValues: { serviceDataArea: e.target.value },
+            "dataValues[serviceDataArea]": e.target.value,
           })
         }
       />
@@ -42,7 +42,7 @@ export function ContactForm({
         value={serviceDataCity}
         onChange={(e) =>
           updateFields({
-            dataValues: { serviceDataCity: e.target.value },
+            "dataValues[serviceDataCity]": e.target.value,
           })
         }
       >
