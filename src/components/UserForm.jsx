@@ -6,7 +6,7 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
       <label htmlFor="dataPhone">Numer telefonu</label>
       <input
         autoFocus
-        // required
+        required
         name="dataPhone"
         type="tel"
         id="dataPhone"

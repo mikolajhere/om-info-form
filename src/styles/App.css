@@ -202,3 +202,7 @@ label {
   margin-bottom: 0;
   cursor: pointer;
 }
+
+.form-content p {
+  text-align: center;
+}

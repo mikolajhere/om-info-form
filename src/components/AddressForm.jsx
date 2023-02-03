@@ -20,7 +20,7 @@ export function AddressForm({
       <input
         autoFocus
         type="text"
-        name="serviceDataAddressCityTextText"
+        name="city"
         id="serviceDataAddressCityTextText"
         value={serviceDataAddressCityTextText}
         onChange={(e) =>

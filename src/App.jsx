@@ -42,16 +42,6 @@ export const App = () => {
     });
   }
 
-  function handleTitleChange(e) {
-    setData({
-      ...data,
-      artwork: {
-        ...person.artwork,
-        title: e.target.value,
-      },
-    });
-  }
-
   const { isFirstStep, step, isLastStep, next } = useMultistepForm([
     <UserForm {...data} updateFields={updateFields} />,
     <ContactForm {...data} updateFields={updateFields} />,
@@ -60,10 +50,7 @@ export const App = () => {
     <AdditionalForm {...data} updateFields={updateFields} />,
     <ThankYouForm {...data} updateFields={updateFields} />,
   ]);
-
-  // TODO
-  // 1. naprawic wysylke maili 4x pod rzad
-  // 2. naprawic nadpisywanie dataValues
+ 
 
   function onSubmit(e) {
     e.preventDefault();
@@ -84,6 +71,10 @@ export const App = () => {
         .then((data) => {
           setData({ clientHash: data.hash, submit: 1 });
           console.log("Endpoint Success: ", data);
+          gtag('event', 'conversion', {
+            'send_to': 'AW-770387884/0xP4CPCj6LMBEKzfrO8C'
+          });
+          console.log("gtag ok")
         })
         .catch((error) => {
           console.error("Endpoint Error: ", error);
@@ -118,7 +109,7 @@ export const App = () => {
   return (
     <div className="form-container">
       <div className="num-of-page">
-        <img src="/img/logo.svg" alt="log" height={40} />
+        <img src="/img/logo.svg" alt="logo" height={40} />
       </div>
       <form onSubmit={onSubmit}>
         {step}
