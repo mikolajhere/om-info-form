@@ -116,6 +116,7 @@ input {
   transition: 0.2s;
 }
 select {
+  color: #000;
   min-height: 35px;
   padding: 10px 15px;
   border: solid 1px #ddd;
