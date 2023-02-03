@@ -53,9 +53,10 @@ export const App = () => {
   ]);
 
   // TODO 
-  // 1. naprawic wskazowki dojazdu  
+  // 1. naprawic wskazowki dojazdu 
   // 2. naprawic tagi
   // 3. naprawic wpisanie pola miasto z formularza do pola miejscowosc w CRM
+  // 4. naprawic wysylke maili 4x pod rzad
 
   function onSubmit(e) {
     e.preventDefault();
