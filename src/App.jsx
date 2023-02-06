@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ContactForm } from "./components/ContactForm";
-import { useMultistepForm } from "./components/useMultistepForm";
+import { UseMultistepForm } from "./components/UseMultistepForm";
 import { UserForm } from "./components/UserForm";
 import { DateForm } from "./components/DateForm";
 import { AddressForm } from "./components/AddressForm";
@@ -42,7 +42,7 @@ export const App = () => {
     });
   }
 
-  const { isFirstStep, step, isLastStep, next } = useMultistepForm([
+  const { isFirstStep, step, isLastStep, next } = UseMultistepForm([
     <UserForm {...data} updateFields={updateFields} />,
     <ContactForm {...data} updateFields={updateFields} />,
     <AddressForm {...data} updateFields={updateFields} />,
