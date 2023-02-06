@@ -21,7 +21,9 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
         id="serviceHomeType"
         name="serviceHomeType"
         value={serviceHomeType}
-        onChange={(e) => updateFields({ "dataValues[serviceHomeType]": e.target.value })}
+        onChange={(e) =>
+          updateFields({ "dataValues[serviceHomeType]": e.target.value })
+        }
       >
         <option value="wybierz">wybierz</option>
         <option value="390">Mieszkanie</option>

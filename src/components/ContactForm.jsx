@@ -27,7 +27,7 @@ export function ContactForm({
         name="serviceDataArea"
         id="serviceDataArea"
         min={1}
-        max={2000}
+        max={10000}
         value={serviceDataArea}
         onChange={(e) =>
           updateFields({

@@ -50,7 +50,6 @@ export const App = () => {
     <AdditionalForm {...data} updateFields={updateFields} />,
     <ThankYouForm {...data} updateFields={updateFields} />,
   ]);
- 
 
   function onSubmit(e) {
     e.preventDefault();
@@ -71,10 +70,9 @@ export const App = () => {
         .then((data) => {
           setData({ clientHash: data.hash, submit: 1 });
           console.log("Endpoint Success: ", data);
-          gtag('event', 'conversion', {
-            'send_to': 'AW-770387884/0xP4CPCj6LMBEKzfrO8C'
+          gtag("event", "conversion", {
+            send_to: "AW-770387884/0xP4CPCj6LMBEKzfrO8C",
           });
-          console.log("gtag ok")
         })
         .catch((error) => {
           console.error("Endpoint Error: ", error);
@@ -105,25 +103,25 @@ export const App = () => {
       }
     }
   }
+  // TODO
+  // wstawienie metrażu 10000 nie zaznacza automatycznie metrażu w kliencie w CRM 
+  // wysłanie 5 maili z potwierdzeniem 
 
   return (
     <div className="form-container">
       <div className="num-of-page">
-        <img src="/img/logo.svg" alt="logo" height={40} />
+        <img src="/img/logo.svg" alt="logo" height={40} width={129.31} />
       </div>
       <form onSubmit={onSubmit}>
         {step}
         {isLastStep ? (
           <></>
         ) : (
-          <>
-            {" "}
-            <div className="form-foot">
-              <button className="btn-main" type="submit">
-                Dalej
-              </button>
-            </div>
-          </>
+          <div className="form-foot">
+            <button className="btn-main" type="submit">
+              Dalej
+            </button>
+          </div>
         )}
       </form>
     </div>

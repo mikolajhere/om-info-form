@@ -13,7 +13,13 @@ export function DateForm({ updateFields }) {
   return (
     <FormWrapper title="Termin">
       <label htmlFor="date">Wybierz datę:</label>
-      <input type="date" id="date" onChange={handleChange} ref={dateInputRef} />
+      <input
+        autoFocus
+        type="date"
+        id="date"
+        onChange={handleChange}
+        ref={dateInputRef}
+      />
           
     </FormWrapper>
   );

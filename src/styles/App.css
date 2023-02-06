@@ -21,7 +21,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  width: 100%;
 }
 
 .form-container {
@@ -32,13 +32,13 @@ body {
   padding: 1.5rem;
   margin: 1rem;
   border-radius: 0.5rem;
-  max-width: max-content;
-  min-width: 100%;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .form-container {
     min-width: 650px;
+    max-width: max-content;
   }
   .form-content {
     min-height: 400px;
@@ -197,8 +197,8 @@ label {
   padding: 0 15px;
   border: solid 1px #ddd;
   border-radius: 0.25rem;
-  font-size: large; 
-  transition: 0.2s; 
+  font-size: large;
+  transition: 0.2s;
   margin-bottom: 0;
   cursor: pointer;
 }
