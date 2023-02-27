@@ -14,7 +14,7 @@ body {
 * {
   font-family: "Roboto", sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 0; 
 }
 
 #root {
@@ -50,8 +50,7 @@ body {
   }
 }
 
-.num-of-page {
-  /* position: absolute; */
+.num-of-page { 
   top: 0.5rem;
   right: 0.5rem;
   display: flex;

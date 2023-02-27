@@ -9,10 +9,10 @@ import { ThankYouForm } from "./components/ThankYouForm";
 import "../src/styles/App.css";
 
 const INITIAL_DATA = {
-  dataSMSTemplate: "odbiorymieszkan.info.php",
   dataLog: "",
   dataPhone: "",
   dataEmailTemplate: "odbiorymieszkan.info.php",
+  dataSMSTemplate: "odbiorymieszkan.info.php",
   dataTags: {
     3: "1",
     4: "1",
