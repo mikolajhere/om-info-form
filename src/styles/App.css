@@ -24,6 +24,14 @@ body {
   width: 100%;
 }
 
+
+@media(max-width:576px){
+  #root {
+    align-items: start;
+  }
+}
+
+
 .form-container {
   position: relative;
   background: white;
