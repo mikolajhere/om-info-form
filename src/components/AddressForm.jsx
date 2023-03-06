@@ -14,7 +14,7 @@ export function AddressForm({
   };
 
   return (
-    <FormWrapper title="Dodatkowe informacje">
+    <FormWrapper title="Adres">
       <label htmlFor="serviceDataAddressCityTextText">Miasto</label>
       <input
         autoFocus

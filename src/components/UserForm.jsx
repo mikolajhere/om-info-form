@@ -2,7 +2,7 @@ import { FormWrapper } from "./FormWrapper";
 
 export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
   return (
-    <FormWrapper title="Twoja nieruchomość">
+    <FormWrapper title="Podstawowe dane">
       <label htmlFor="dataPhone">Numer telefonu</label>
       <input
         autoFocus
@@ -16,7 +16,7 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
         onChange={(e) => updateFields({ dataPhone: e.target.value })}
       />
 
-      <label htmlFor="serviceHomeType">Nieruchomość</label>
+      <label htmlFor="serviceHomeType">Typ nieruchomości</label>
       <select
         id="serviceHomeType"
         name="serviceHomeType"
