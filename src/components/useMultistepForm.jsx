@@ -25,6 +25,7 @@ export function UseMultistepForm(steps) {
     currentStepIndex,
     step: steps[currentStepIndex],
     steps,
+    isSecondStep: currentStepIndex === 1,
     isFirstStep: currentStepIndex === 0,
     isLastStep: currentStepIndex === steps.length - 1,
     goTo,
