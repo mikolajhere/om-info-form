@@ -7,7 +7,7 @@ export function AddressForm({
   street,
   updateFields,
 }) {
-  const handleChange = (e) => {
+  const handleChange = () => {
     updateFields({
       "dataValues[serviceDataAddress]": `${street} (${tips})`,
     });
@@ -49,6 +49,7 @@ export function AddressForm({
           updateFields({ tips: e.target.value });
           handleChange();
         }}
+        defaultValue=" "
       />
     </FormWrapper>
   );
