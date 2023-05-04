@@ -28,7 +28,7 @@ export function UserForm({ dataPhone, serviceHomeType, updateFields }) {
         <option value="wybierz">wybierz</option>
         <option value="390">Mieszkanie</option>
         <option value="391">Dom</option>
-        <option value="391">Inne</option>
+        <option value="393">Inne</option>
       </select>
     </FormWrapper>
   );
