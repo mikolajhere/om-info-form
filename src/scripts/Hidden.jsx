@@ -133,12 +133,17 @@ const useAddHiddenInputs = (formId, inputs) => {
     if (!form) return;
 
     for (const i in cookiesTags) {
-      const hiddenInput = document.createElement("input");
-      hiddenInput.type = "hidden";
-      hiddenInput.name = "dataValues[" + cookiesTags[i] + "]";
-      hiddenInput.value = getCookie(cookiesTags[i]);
-      form.appendChild(hiddenInput);
-      inputs.push(hiddenInput);
+      if (
+        typeof document.getElementsByName(
+          "dataValues[" + cookiesTags[i] + "]"
+        )[0] == "undefined"
+      ) {
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = "dataValues[" + cookiesTags[i] + "]";
+        hiddenInput.value = getCookie(cookiesTags[i]);
+        form.appendChild(hiddenInput);
+      }
     }
 
     // Zapisywanie formularza
@@ -218,7 +223,9 @@ const useAddHiddenInputs = (formId, inputs) => {
             email: getValueOrNull(
               form.querySelectorAll("input[name='dataEmail']")[0]
             ),
-            inne_dane: tekst,
+            inne_dane:
+              tekst +
+              "<br>dataValues[serviceDataType]:394<br>dataValues[serviceClientSource]:19",
           })
         );
       }
