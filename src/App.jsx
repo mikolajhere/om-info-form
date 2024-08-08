@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactForm } from "./components/ContactForm";
 import { UseMultistepForm } from "./components/UseMultistepForm";
 import { UserForm } from "./components/UserForm";
@@ -7,7 +7,7 @@ import { AddressForm } from "./components/AddressForm";
 import { AdditionalForm } from "./components/AdditionalForm";
 import { ThankYouForm } from "./components/ThankYouForm";
 import "../src/styles/App.css";
-import useAddHiddenInputs from "./scripts/Hidden";
+import { useAddHiddenInputs } from "./scripts/Hidden";
 
 const INITIAL_DATA = {
   dataLog: "",
@@ -38,16 +38,27 @@ const INITIAL_DATA = {
 export const App = () => {
   const [data, setData] = useState(INITIAL_DATA);
 
-  useAddHiddenInputs("my-form", []);
+  // Callback function to update data state
+  const updateData = (newData) => {
+    setData((prevData) => ({
+      ...prevData,
+      ...newData,
+    }));
+  };
 
-  const hiddensObj = {};
+  useAddHiddenInputs("my-form", updateData);
 
-  setTimeout(() => {
-    const hiddens = document.querySelectorAll("input[type='hidden']");
-    hiddens.forEach((hidden) => {
-      hiddensObj[hidden.name] = hidden.value;
-    }); 
-  }, 1);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hash = urlParams.get("hash");
+    if (hash) {
+      setData((prevData) => ({
+        ...prevData,
+        clientHash: hash,
+      }));
+      next(); // Move to the next step if hash is present
+    }
+  }, []);
 
   function updateFields(fields) {
     setData((prev) => {
@@ -55,21 +66,20 @@ export const App = () => {
     });
   }
 
-  const { isFirstStep, step, isSecondStep, isLastStep, next } =
-    UseMultistepForm([
-      <UserForm {...data} updateFields={updateFields} />,
-      <ContactForm {...data} updateFields={updateFields} />,
-      <AddressForm {...data} updateFields={updateFields} />,
-      <DateForm {...data} updateFields={updateFields} />,
-      <AdditionalForm {...data} updateFields={updateFields} />,
-      <ThankYouForm {...data} updateFields={updateFields} />,
-    ]);
+  const { isFirstStep, step, isLastStep, next } = UseMultistepForm([
+    <UserForm key={1} {...data} updateFields={updateFields} />,
+    <ContactForm key={2} {...data} updateFields={updateFields} />,
+    <AddressForm key={3} {...data} updateFields={updateFields} />,
+    <DateForm key={4} {...data} updateFields={updateFields} />,
+    <AdditionalForm key={5} {...data} updateFields={updateFields} />,
+    <ThankYouForm key={6} {...data} updateFields={updateFields} />,
+  ]);
 
   function onSubmit(e) {
     e.preventDefault();
 
     if (isFirstStep) {
-      const formData = { ...data, ...hiddensObj };
+      const formData = { ...data };
       console.log({ formData });
       fetch(
         "https://system.pewnylokal.pl/crm/api/newEndpoint.php?format=json",
@@ -89,9 +99,6 @@ export const App = () => {
             dataEmailTemplate: "odbiorymieszkan.info.php",
           });
           console.log("Endpoint Success: ", data);
-          gtag("event", "conversion", {
-            send_to: "AW-770387884/0xP4CPCj6LMBEKzfrO8C",
-          });
         })
         .catch((error) => {
           console.error("Endpoint Error: ", error);
@@ -135,7 +142,7 @@ export const App = () => {
   return (
     <div className="form-container">
       <div className="num-of-page">
-        <img src="/img/logo.svg" alt="logo" height={40} width={129.31} />
+        <img src="logo.svg" alt="logo" height={40} width={129.31} />
       </div>
       <form onSubmit={onSubmit} id="my-form">
         {step}
