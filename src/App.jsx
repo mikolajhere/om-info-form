@@ -56,6 +56,8 @@ export const App = () => {
         ...prevData,
         clientHash: hash,
       }));
+      window.pagesense = window.pagesense || [];
+      window.pagesense.push(["trackEvent", "leady dla om"]);
       next(); // Move to the next step if hash is present
     }
   }, []);
@@ -98,6 +100,8 @@ export const App = () => {
             submit: 1,
             dataEmailTemplate: "odbiorymieszkan.info.php",
           });
+          window.pagesense = window.pagesense || [];
+          window.pagesense.push(["trackEvent", "leady dla om"]);
           console.log("Endpoint Success: ", data);
         })
         .catch((error) => {
